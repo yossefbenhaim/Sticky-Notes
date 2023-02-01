@@ -1,82 +1,69 @@
 import useStyles from './AppStyles';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Note from './components/NewNots/NoteInterface';
 import NewNote from './components/NewNots/NewNote';
 import ButtonAddItem from './components/Butten/ButtonAddItem';
-import InputAddNote from './components/InputAddNote/InputAddNote';
+import InputSearchNots from './components/InputSearchNote/InputAddNots';
+import { v4 as uuidV4 } from 'uuid';
 
-const NOTES_l: Note[] = [
-  { id: '1', title: 'first note', content: 'bla bla bla' },
-  { id: '2', title: 'secound note', content: 'bla bla bla' },
-  {
-    id: '3',
-    title: 'third note',
-    content:
-      ' bla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla bla',
-  },
-];
+// const NOTES_l: Note[] = [
+//   { id: uuidV4(), title: 'first note', content: 'bla bla bla' },
+//   { id: uuidV4(), title: 'secound note', content: 'bla bla bla' },
+//   { id: uuidV4(), title: 'first note', content: 'bla bla bla' },
+//   { id: uuidV4(), title: 'secound note', content: 'bla bla bla' },
+//   { id: uuidV4(), title: 'first note', content: 'bla bla bla' },
+//   { id: uuidV4(), title: 'secound note', content: 'bla bla bla' },
+//   { id: uuidV4(), title: 'first note', content: 'bla bla bla' },
+//   { id: uuidV4(), title: 'secound note', content: 'bla bla bla' },
 
+//   {
+//     id: uuidV4(),
+//     title: 'third note',
+//     content:
+//       ' bla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla bla',
+//   },
+// ];
 const App = () => {
+  const [notes, setNotes] = useState<Note[]>([]);
+  const [note, setNote] = useState<Note>();
+
+  const addNote = (color: string) => {
+    setNotes([
+      ...notes,
+      {
+        id: uuidV4(),
+        title: 'secound note',
+        content: 'bla bla bla',
+        color: color,
+      },
+    ]);
+  };
+
   const classes = useStyles();
-  const [notes, setNotes] = useState<Note[]>(NOTES_l);
+  console.log('yes');
+
+  useEffect(() => {
+    localStorage.setItem('notes', JSON.stringify(notes));
+  }, [notes]);
+
   return (
-    <div className={classes.body}>
-      {notes.map((note) => (
-        <NewNote note={note} key={note.id} />
-      ))}
+    <div className={classes.containerFilde}>
+      <div className={classes.conatainerHeader}>
+        <div className={classes.containerInputSearchNots}>
+          <InputSearchNots />
+        </div>
+        <div className={classes.containetrButtonAddNote}>
+          <ButtonAddItem onClick={(color) => addNote(color)}></ButtonAddItem>
+        </div>
+      </div>
+      <div className={classes.conatainerBody}>
+        {notes.map((note) => (
+          <NewNote note={note} key={note.id} />
+        ))}
+      </div>
     </div>
   );
 };
+const addNoteslist = (props: Note) => {};
 
 export default App;
-
-// import useStyles from "./AppStyles";
-// import React, { useState } from "react";
-// import {
-//   Typography,
-//   Card,
-//   CardHeader,
-//   CardMedia,
-//   CardContent,
-//   CardActions,
-// } from "@mui/material";
-
-// interface Note {
-//   id: string;
-//   title: string;
-//   content: string;
-// }
-
-// interface Props {
-//   note: Note;
-// }
-
-// const NoteItem = (props: Props) => {
-//   const { note } = props;
-//   return (
-//     <div>
-//       <h1>{note.id}</h1>
-//     </div>
-//   );
-// };
-
-// const TEMP: Note[] = [
-//   { id: "gf", title: "kjs", content: "js" },
-//   { id: "gf", title: "kjs", content: "js" },
-//   { id: "gf", title: "kjs", content: "js" },
-// ];
-
-// const App = () => {
-//   const classes = useStyles();
-//   const [notes, setNotes] = useState<Note[]>(TEMP);
-
-//   return (
-//     <div className={classes.body}>
-//       {notes.map((note) => (
-//         <NoteItem note={note} key={note.id} />
-//       ))}
-//     </div>
-//   );
-// };
-
-// export default App;

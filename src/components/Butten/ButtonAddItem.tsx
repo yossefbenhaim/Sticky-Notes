@@ -1,42 +1,41 @@
-import { Button } from "@mui/material";
-import usuStyle from "./ButtonAddItemStyle";
-import Icon from "@mui/material/Icon";
-import AddIcon from "@mui/icons-material/Add";
-import Box from "@mui/material/Box";
-import SpeedDial from "@mui/material/SpeedDial";
-import SpeedDialIcon from "@mui/material/SpeedDialIcon";
-import SpeedDialAction from "@mui/material/SpeedDialAction";
-import FileCopyIcon from "@mui/icons-material/FileCopyOutlined";
-import SaveIcon from "@mui/icons-material/Save";
-import PrintIcon from "@mui/icons-material/Print";
-import ShareIcon from "@mui/icons-material/Share";
+import usuStyle from './ButtonAddItemStyle';
+import Box from '@mui/material/Box';
+import SpeedDial from '@mui/material/SpeedDial';
+import SpeedDialIcon from '@mui/material/SpeedDialIcon';
+import SpeedDialAction from '@mui/material/SpeedDialAction';
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
 
 const colors = [
-  { icon: <FileCopyIcon />, name: "green", value: "#00ff5a" },
-  { icon: <SaveIcon />, name: "blue", value: "#0024ff" },
-  { icon: <PrintIcon />, name: "red", value: "#ff0000" },
-  { icon: <ShareIcon />, name: "pink", value: "#ff00b1" },
-  { icon: <ShareIcon />, name: "yellow", value: "#f9ff00" },
+  { name: 'green', value: '#00ff5a' },
+  { name: 'blue', value: '#0024ff' },
+  { name: 'red', value: '#ff0000' },
+  { name: 'pink', value: '#ff00b1' },
+  { name: 'yellow', value: '#f9ff00' },
 ];
 
-const ButtonAddItem = () => {
+interface Props {
+  onClick: (color: string) => void;
+}
+const ButtonAddItem = (props: Props) => {
   const classes = usuStyle();
+  const { onClick } = props;
 
   return (
     <div>
       <Box>
         <SpeedDial
+          className={classes.buttenStyly}
           ariaLabel="SpeedDial basic example"
           sx={{
-            position: "absolute",
-            // bottom: 16,
-            right: 16,
+            float: 'right',
+            right: 19,
           }}
           icon={<SpeedDialIcon />}
-          direction="up"
+          direction="down"
         >
           {colors.map((color) => (
             <SpeedDialAction
+              onClick={() => onClick(color.value)}
               key={color.name}
               FabProps={{ style: { backgroundColor: color.value } }}
               icon={undefined}
@@ -47,6 +46,10 @@ const ButtonAddItem = () => {
       </Box>
     </div>
   );
+};
+
+const addNote = (color: string) => {
+  console.log('hiii');
 };
 
 export default ButtonAddItem;

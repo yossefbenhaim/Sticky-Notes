@@ -1,15 +1,18 @@
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from '@mui/styles';
 
 const usuStyle = makeStyles({
   buttenStyly: {
-    backgroundColor: "red",
-    width: "6rem",
-    height: "3rem",
-    fontSize: 13,
-    margin: "3%",
-  },
-  colors: {
-    backgroundColor: "red",
+    marginRight: '30%',
+    marginTop: '2%',
+    height: '50px',
+    position: 'relative',
+
+    '& .MuiButtonBase-root': {
+      minHeight: '39px',
+      height: '25px',
+      width: '40px',
+      backgroundColor: 'black',
+    },
   },
 });
 
