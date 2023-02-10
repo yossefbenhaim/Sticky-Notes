@@ -1,15 +1,15 @@
 import { TextField, IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import useStyle from './InputSearchNotsStyle';
+import useStyles from './SearchNotsStyle';
 
-const InputSearchNots = () => {
-  const classes = useStyle();
+const SearchNots = () => {
+  const classes = useStyles();
   return (
     <div>
       <TextField
         className={classes.searchNote}
         id="filled-basic"
-        placeholder="SearchNots"
+        placeholder="חיפוש"
         multiline
         variant="filled"
         disabled={false}
@@ -24,4 +24,4 @@ const InputSearchNots = () => {
   );
 };
 
-export default InputSearchNots;
+export default SearchNots;

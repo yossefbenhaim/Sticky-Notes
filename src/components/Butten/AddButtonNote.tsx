@@ -1,23 +1,22 @@
-import usuStyle from './ButtonAddItemStyle';
+import useStyles from './AddButtonNoteStyle';
 import Box from '@mui/material/Box';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
-import ModeEditIcon from '@mui/icons-material/ModeEdit';
 
 const colors = [
-  { name: 'green', value: '#00ff5a' },
-  { name: 'blue', value: '#0024ff' },
-  { name: 'red', value: '#ff0000' },
-  { name: 'pink', value: '#ff00b1' },
-  { name: 'yellow', value: '#f9ff00' },
+  { name: 'ירוק', value: 'rgb(70 217 122)' },
+  { name: 'כחול', value: 'rgb(112 130 239)' },
+  { name: 'אדום', value: 'rgb(202 40 40)' },
+  { name: 'סגול', value: 'rgb(181 58 223)' },
+  { name: 'צהוב', value: 'rgb(228 230 140)' },
 ];
 
 interface Props {
   onClick: (color: string) => void;
 }
-const ButtonAddItem = (props: Props) => {
-  const classes = usuStyle();
+const AddButtonItem = (props: Props) => {
+  const classes = useStyles();
   const { onClick } = props;
 
   return (
@@ -52,4 +51,4 @@ const addNote = (color: string) => {
   console.log('hiii');
 };
 
-export default ButtonAddItem;
+export default AddButtonItem;

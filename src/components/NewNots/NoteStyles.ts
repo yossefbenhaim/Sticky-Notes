@@ -1,23 +1,26 @@
+import { Theme } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
-const usuStyle = makeStyles({
+interface Props {
+  color: string;
+}
+
+const useStyles = makeStyles<Theme, Props>({
   containerField: {
-    height: '216px',
+    width: 'auto',
+    height: 'auto',
+    margin: '1%',
   },
   card: {
-    width: '78%',
-    height: '95%',
-    marginTop: '3%',
-    marginLeft: '2%',
-    backgroundColor: '#ffff5f',
+    display: 'flex',
+    flexDirection: 'column',
+
+    backgroundColor: ({ color }) => color,
   },
-  titleCard: {
-    width: '90%',
-    height: '50px',
+  cardTitle: {
     '& .MuiInputBase-root': {
-      fontWeight: '900',
       backgroundColor: '#ffff5f00',
-      marginTop: '-10%',
+      direction: 'rtl',
     },
     '& .MuiInputBase-root:before': {
       borderBottom: '0px',
@@ -30,16 +33,20 @@ const usuStyle = makeStyles({
       right: '0',
     },
   },
+  containerMenuAndTitle: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
 
-  contentCard: {
+  cardContent: {
     backgroundColor: '#ffff5f00',
     width: '100%',
-    height: '116px',
+    height: 'auto',
     borderRadius: '0 0 1.5vh 1.5vh ',
     '& .MuiInputBase-root': {
       backgroundColor: '#ffff5f00',
-      marginTop: '-10%',
-      height: '146px',
+      direction: 'rtl',
     },
     '& .MuiFilledInput-root:after': {
       borderBottom: '0px',
@@ -52,6 +59,15 @@ const usuStyle = makeStyles({
       right: '0',
     },
   },
+  icon: {
+    float: 'left',
+    /* display: none; */
+    marginLeft: '3%',
+  },
+
+  doneIcon: {
+    float: 'left',
+  },
 });
 
-export default usuStyle;
+export default useStyles;

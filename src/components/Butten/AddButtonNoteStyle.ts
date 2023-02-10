@@ -1,6 +1,6 @@
 import { makeStyles } from '@mui/styles';
 
-const usuStyle = makeStyles({
+const useStyles = makeStyles({
   buttenStyly: {
     marginRight: '30%',
     marginTop: '2%',
@@ -16,4 +16,4 @@ const usuStyle = makeStyles({
   },
 });
 
-export default usuStyle;
+export default useStyles;

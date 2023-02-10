@@ -1,40 +1,50 @@
 import React from 'react';
-
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import useStyles from './MenuEditingNoteStyle';
+import useStyles from './MenuNoteStyle';
+import NoteInterface from '../NewNots/NoteInterface';
 
-const options = ['ערכיה', 'מחיקה'];
+interface Props {
+  setFlag: (value: boolean) => void;
+  id: string;
+  setNotes: (value: React.SetStateAction<NoteInterface[]>) => void;
+}
+
+const options = ['עריכה', 'מחיקה'];
 
 const ITEM_HEIGHT = 48;
-const LongMenu = () => {
+const MenuNote = (props: Props) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const { setNotes, id } = props;
+
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const viewUpDate = () => {
+    props.setFlag(false);
+  };
+
+  const myDeleteNote = (id: string) => {
+    setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id));
+  };
 
   return (
     <div>
       <IconButton
         className={classes.containerMenu}
-        aria-label="more"
         id="long-button"
         onClick={handleClick}
       >
         <MoreVertIcon />
       </IconButton>
       <Menu
-        id="long-menu"
-        MenuListProps={{
-          'aria-labelledby': 'long-button',
-        }}
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
@@ -45,18 +55,21 @@ const LongMenu = () => {
           },
         }}
       >
-        {options.map((option) => (
-          <MenuItem
-            key={option}
-            selected={option === 'Pyxis'}
-            onClick={handleClose}
-          >
-            {option}
-          </MenuItem>
-        ))}
+        <MenuItem onClick={() => myDeleteNote(id)} key={'מחיקה'}>
+          מחיקה
+        </MenuItem>
+        <MenuItem
+          key={'עריכה'}
+          onClick={() => {
+            viewUpDate();
+            handleClose();
+          }}
+        >
+          עריכה
+        </MenuItem>
       </Menu>
     </div>
   );
 };
 
-export default LongMenu;
+export default MenuNote;

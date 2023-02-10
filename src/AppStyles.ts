@@ -23,12 +23,13 @@ const useStyles = makeStyles({
   },
 
   conatainerBody: {
-    width: '100%',
+    width: '90%',
     height: '100%',
     display: 'flex',
+    direction: 'rtl',
     flexWrap: 'wrap',
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'right',
   },
 });
 

@@ -1,6 +1,6 @@
 import { makeStyles } from '@mui/styles';
 
-const useStyle = makeStyles({
+const useStyles = makeStyles({
   searchNote: {
     backgroundColor: '#ffff5f00',
     width: '50%',
@@ -30,4 +30,4 @@ const useStyle = makeStyles({
   },
 });
 
-export default useStyle;
+export default useStyles;

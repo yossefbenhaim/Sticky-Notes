@@ -1,69 +1,54 @@
 import useStyles from './AppStyles';
 import React, { useState, useEffect } from 'react';
-import Note from './components/NewNots/NoteInterface';
-import NewNote from './components/NewNots/NewNote';
-import ButtonAddItem from './components/Butten/ButtonAddItem';
-import InputSearchNots from './components/InputSearchNote/InputAddNots';
+import NoteInterface from './components/NewNots/NoteInterface';
+import Note from './components/NewNots/Note';
+import AddButtonItem from './components/Butten/AddButtonNote';
+
 import { v4 as uuidV4 } from 'uuid';
+import SearchNots from './components/SearchNote/SearchNots';
 
-// const NOTES_l: Note[] = [
-//   { id: uuidV4(), title: 'first note', content: 'bla bla bla' },
-//   { id: uuidV4(), title: 'secound note', content: 'bla bla bla' },
-//   { id: uuidV4(), title: 'first note', content: 'bla bla bla' },
-//   { id: uuidV4(), title: 'secound note', content: 'bla bla bla' },
-//   { id: uuidV4(), title: 'first note', content: 'bla bla bla' },
-//   { id: uuidV4(), title: 'secound note', content: 'bla bla bla' },
-//   { id: uuidV4(), title: 'first note', content: 'bla bla bla' },
-//   { id: uuidV4(), title: 'secound note', content: 'bla bla bla' },
+const App: React.FC = () => {
+  const classes = useStyles();
+  const [notes, setNotes] = useState<NoteInterface[]>([]);
 
-//   {
-//     id: uuidV4(),
-//     title: 'third note',
-//     content:
-//       ' bla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla bla',
-//   },
-// ];
-const App = () => {
-  const [notes, setNotes] = useState<Note[]>([]);
-  const [note, setNote] = useState<Note>();
+  useEffect(() => {
+    const notes = JSON.parse(localStorage.getItem('notes') ?? '[]');
+    setNotes(notes);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('notes', JSON.stringify(notes));
+  }, [notes]);
 
   const addNote = (color: string) => {
     setNotes([
-      ...notes,
       {
         id: uuidV4(),
         title: 'secound note',
         content: 'bla bla bla',
         color: color,
       },
+      ...notes,
     ]);
   };
-
-  const classes = useStyles();
-  console.log('yes');
-
-  useEffect(() => {
-    localStorage.setItem('notes', JSON.stringify(notes));
-  }, [notes]);
 
   return (
     <div className={classes.containerFilde}>
       <div className={classes.conatainerHeader}>
         <div className={classes.containerInputSearchNots}>
-          <InputSearchNots />
+          <SearchNots />
         </div>
         <div className={classes.containetrButtonAddNote}>
-          <ButtonAddItem onClick={(color) => addNote(color)}></ButtonAddItem>
+          <AddButtonItem onClick={(color) => addNote(color)}></AddButtonItem>
         </div>
       </div>
       <div className={classes.conatainerBody}>
         {notes.map((note) => (
-          <NewNote note={note} key={note.id} />
+          <Note setNotes={setNotes} note={note} key={note.id} />
         ))}
       </div>
     </div>
   );
 };
-const addNoteslist = (props: Note) => {};
 
 export default App;
