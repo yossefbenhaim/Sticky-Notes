@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import useStyles from './NoteStyles';
 import NoteInterface from './NoteInterface';
 import { Card, TextField, IconButton } from '@mui/material';
-import MenuNote from '../MenuAddNote/MenuNote';
+import MenuNote from '../NoteMenu/NoteMenu';
 import DoneIcon from '@mui/icons-material/Done';
 
 interface Props {
@@ -12,24 +12,39 @@ interface Props {
 
 const Note = (props: Props) => {
   const { note, setNotes } = props;
-  const [titleText, setTitleText] = useState<string>(note.title);
-  const [contentText, setContentText] = useState<string>(note.content);
-  let [flag, setFlag] = useState<boolean>(true);
+
+  let [titleNote, setTitleNote] = useState<string>('');
+
+  let [contentNote, setContentNote] = useState<string>('');
+
+  let [flag, setFlag] = useState<boolean>(false);
+
   const classes = useStyles({ color: note.color });
 
   const titleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTitleText(event.target.value);
-    console.log(titleText);
+    setTitleNote(event.target.value);
+  };
 
-    return event.target.value;
-  };
   const contentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setContentText(event.target.value);
-    return event.target.value;
+    setContentNote(event.target.value);
   };
+
   const upDateNote = () => {
-    setFlag(true);
+    setFlag(false);
+    setNotes((prevNotes) =>
+      prevNotes.map((prevNote) =>
+        prevNote.id !== note.id
+          ? prevNote
+          : {
+              id: note.id,
+              title: titleNote,
+              content: contentNote,
+              color: note.color,
+            }
+      )
+    );
   };
+
   return (
     <div className={classes.containerField}>
       <Card className={classes.card}>
@@ -41,12 +56,19 @@ const Note = (props: Props) => {
             placeholder="כותרת"
             multiline
             variant="filled"
-            disabled={flag}
+            disabled={!flag}
             rows={1}
-            defaultValue={titleText}
+            defaultValue={note.title}
           />
 
-          <MenuNote setFlag={setFlag} id={note.id} setNotes={setNotes} />
+          <MenuNote
+            id={note.id}
+            note={note}
+            titleNote={titleNote}
+            contentNote={contentNote}
+            setFlag={setFlag}
+            setNotes={setNotes}
+          />
         </div>
         <TextField
           className={classes.cardContent}
@@ -55,20 +77,22 @@ const Note = (props: Props) => {
           placeholder="תוכן"
           multiline
           variant="filled"
-          disabled={flag}
-          rows={5.8}
-          defaultValue={contentText}
+          disabled={!flag}
+          rows={6}
+          defaultValue={note.content}
         />
-        <div className={classes.doneIcon}>
-          <IconButton
-            type="button"
-            className={classes.icon}
-            aria-label="doneIcon"
-            onClick={upDateNote}
-          >
-            <DoneIcon />
-          </IconButton>
-        </div>
+        {flag && (
+          <div className={classes.doneIcon}>
+            <IconButton
+              type="button"
+              className={classes.icon}
+              aria-label="doneIcon"
+              onClick={upDateNote}
+            >
+              <DoneIcon />
+            </IconButton>
+          </div>
+        )}
       </Card>
     </div>
   );

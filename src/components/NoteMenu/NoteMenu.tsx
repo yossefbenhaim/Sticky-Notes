@@ -3,23 +3,23 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import useStyles from './MenuNoteStyle';
+import useStyles from './NoteMenuStyle';
 import NoteInterface from '../NewNots/NoteInterface';
 
 interface Props {
-  setFlag: (value: boolean) => void;
   id: string;
+  note: NoteInterface;
+  titleNote: string;
+  contentNote: string;
+  setFlag: (value: boolean) => void;
   setNotes: (value: React.SetStateAction<NoteInterface[]>) => void;
 }
 
-const options = ['עריכה', 'מחיקה'];
-
-const ITEM_HEIGHT = 48;
 const MenuNote = (props: Props) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const { setNotes, id } = props;
+  const { id, note, titleNote, contentNote, setFlag, setNotes } = props;
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -28,7 +28,7 @@ const MenuNote = (props: Props) => {
     setAnchorEl(null);
   };
   const viewUpDate = () => {
-    props.setFlag(false);
+    setFlag(true);
   };
 
   const myDeleteNote = (id: string) => {
@@ -44,17 +44,7 @@ const MenuNote = (props: Props) => {
       >
         <MoreVertIcon />
       </IconButton>
-      <Menu
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        PaperProps={{
-          style: {
-            maxHeight: ITEM_HEIGHT * 4.5,
-            width: '20ch',
-          },
-        }}
-      >
+      <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
         <MenuItem onClick={() => myDeleteNote(id)} key={'מחיקה'}>
           מחיקה
         </MenuItem>

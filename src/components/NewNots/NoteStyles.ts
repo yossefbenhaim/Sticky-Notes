@@ -61,7 +61,6 @@ const useStyles = makeStyles<Theme, Props>({
   },
   icon: {
     float: 'left',
-    /* display: none; */
     marginLeft: '3%',
   },
 
