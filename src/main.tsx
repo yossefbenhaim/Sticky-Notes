@@ -5,10 +5,10 @@ import App from './App';
 import './index.css';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <StyledEngineProvider injectFirst>
-      <App />
-    </StyledEngineProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <StyledEngineProvider injectFirst>
+            <App />
+        </StyledEngineProvider>
+    </React.StrictMode>,
+    document.getElementById('root')
 );

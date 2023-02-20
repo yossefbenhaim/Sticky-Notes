@@ -1,36 +1,37 @@
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
-  containerFilde: {
-    width: '100%',
-  },
-  conatainerHeader: {
-    backgroundColor: '#d5e04087',
-    width: '100%',
-    height: '100px',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  containerInputSearchNots: {
-    width: '89%',
-    direction: 'rtl',
-    alignSelf: 'center',
-  },
-  containetrButtonAddNote: {
-    width: '10%',
-    alignSelf: 'center',
-  },
+    root: {
+        width: '100%',
+    },
+    header: {
+        backgroundColor: '#d5e04087',
+        width: '100%',
+        height: '100px',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    searchNotesContainer: {
+        width: '89%',
+        direction: 'rtl',
+        alignSelf: 'center',
+    },
+    addNoteContainetr: {
+        width: '91px',
+        height: '46px',
+        alignSelf: 'center',
+    },
 
-  conatainerBody: {
-    width: '90%',
-    height: '100%',
-    display: 'flex',
-    direction: 'rtl',
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    justifyContent: 'right',
-  },
+    body: {
+        width: '93%',
+        height: '100%',
+        display: 'flex',
+        direction: 'rtl',
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+        justifyContent: 'right',
+    },
 });
 
 export default useStyles;

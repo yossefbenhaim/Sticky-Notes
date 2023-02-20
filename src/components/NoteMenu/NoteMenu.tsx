@@ -1,65 +1,65 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import useStyles from './NoteMenuStyle';
-import NoteInterface from '../NewNots/NoteInterface';
-
+import useStyles from './noteMenuStyle';
+import Note from '../../interfaces/Note';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import EditIcon from '@mui/icons-material/Edit';
 interface Props {
-  id: string;
-  note: NoteInterface;
-  titleNote: string;
-  contentNote: string;
-  setFlag: (value: boolean) => void;
-  setNotes: (value: React.SetStateAction<NoteInterface[]>) => void;
+    note: Note;
+    setFlag: Dispatch<SetStateAction<boolean>>;
+    setNotes: (value: React.SetStateAction<Note[]>) => void;
 }
 
-const MenuNote = (props: Props) => {
-  const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-  const { id, note, titleNote, contentNote, setFlag, setNotes } = props;
+const NoteMenu: React.FC<Props> = (props) => {
+    const classes = useStyles();
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
+    const { note, setFlag, setNotes } = props;
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  const viewUpDate = () => {
-    setFlag(true);
-  };
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+    const viewUpDate = () => {
+        setFlag(true);
+    };
 
-  const myDeleteNote = (id: string) => {
-    setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id));
-  };
+    const myDeleteNote = () => {
+        setNotes((prevNotes) =>
+            prevNotes.filter((item) => item.id !== note.id)
+        );
+    };
 
-  return (
-    <div>
-      <IconButton
-        className={classes.containerMenu}
-        id="long-button"
-        onClick={handleClick}
-      >
-        <MoreVertIcon />
-      </IconButton>
-      <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-        <MenuItem onClick={() => myDeleteNote(id)} key={'מחיקה'}>
-          מחיקה
-        </MenuItem>
-        <MenuItem
-          key={'עריכה'}
-          onClick={() => {
-            viewUpDate();
-            handleClose();
-          }}
-        >
-          עריכה
-        </MenuItem>
-      </Menu>
-    </div>
-  );
+    return (
+        <>
+            <IconButton
+                className={classes.Menu}
+                id="long-button"
+                onClick={handleClick}
+            >
+                <MoreVertIcon />
+            </IconButton>
+            <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+                <MenuItem onClick={() => myDeleteNote()}>
+                    <DeleteOutlineIcon className={classes.icons} /> מחיקה
+                </MenuItem>
+                <MenuItem
+                    onClick={() => {
+                        viewUpDate();
+                        handleClose();
+                    }}
+                >
+                    <EditIcon className={classes.icons} />
+                    עריכה
+                </MenuItem>
+            </Menu>
+        </>
+    );
 };
 
-export default MenuNote;
+export default NoteMenu;

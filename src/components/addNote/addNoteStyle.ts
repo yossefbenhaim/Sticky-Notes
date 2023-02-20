@@ -1,11 +1,8 @@
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
-    Menu: {
+    butten: {
         float: 'left',
-    },
-    icons: {
-        marginRight: '10px',
     },
 });
 
