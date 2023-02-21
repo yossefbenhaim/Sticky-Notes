@@ -1,11 +1,8 @@
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
-    root: {
-        width: '100%',
-    },
     header: {
-        backgroundColor: '#d5e040',
+        backgroundColor: '#eef679',
         width: '100%',
         height: '100px',
         display: 'flex',

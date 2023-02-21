@@ -2,9 +2,9 @@ import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
     button: {
-        // marginTop: '2%',
         height: '39px',
-        // position: 'relative',
+        zIndex: '0',
+
         '& .MuiButtonBase-root': {
             minHeight: '39px',
             height: '39px',

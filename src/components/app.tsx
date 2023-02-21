@@ -31,7 +31,7 @@ const App: React.FC = () => {
     );
 
     return (
-        <div className={classes.root}>
+        <>
             <div className={classes.header}>
                 <div className={classes.searchNotesContainer}>
                     <NotesSearch setSearchValue={setSearchValue} />
@@ -45,7 +45,7 @@ const App: React.FC = () => {
                     <NoteItem setNotes={setNotes} note={note} key={note.id} />
                 ))}
             </div>
-        </div>
+        </>
     );
 };
 
