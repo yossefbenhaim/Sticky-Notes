@@ -3,7 +3,7 @@ import { makeStyles } from '@mui/styles';
 const useStyles = makeStyles({
     button: {
         height: '39px',
-        zIndex: '0',
+        zIndex: '1',
 
         '& .MuiButtonBase-root': {
             minHeight: '39px',
