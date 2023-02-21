@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import useStyles from './noteItemStyles';
-import Note from '../../interfaces/Note';
+import Note from 'models/interfaces/Note';
 import { Card, TextField, IconButton } from '@mui/material';
 import NoteMenu from '../noteMenu/noteMenu';
 import DoneIcon from '@mui/icons-material/Done';
 import ColorPalette from '../colorPalette/colorPalette';
+import PaletteIcon from '@mui/icons-material/Palette';
 
 interface Props {
     note: Note;
@@ -70,16 +71,22 @@ const NoteItem: React.FC<Props> = (props) => {
                 )}
 
                 {isEdit && (
-                    <ColorPalette typeIcon={true} onClick={changeNoteColor} />
+                    <ColorPalette
+                        icon={<PaletteIcon />}
+                        onClick={changeNoteColor}
+                    />
                 )}
 
-                <NoteMenu note={note} setFlag={setIsEdit} setNotes={setNotes} />
+                <NoteMenu
+                    note={note}
+                    setIsEdit={setIsEdit}
+                    setNotes={setNotes}
+                />
             </div>
 
             <TextField
                 className={classes.titleCard}
                 onChange={changeTitle}
-                id="filled-basic"
                 placeholder="כותרת"
                 multiline
                 variant="filled"
@@ -91,7 +98,6 @@ const NoteItem: React.FC<Props> = (props) => {
             <TextField
                 className={classes.contentCard}
                 onChange={changeContent}
-                id="filled-basic"
                 placeholder="תוכן"
                 multiline
                 variant="filled"

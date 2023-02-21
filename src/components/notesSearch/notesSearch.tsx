@@ -12,19 +12,19 @@ const NotesSearch: React.FC<Props> = (props) => {
     const classes = useStyles();
 
     const { setSearchValue } = props;
-    const [valueInput, setValueInput] = useState<string>('');
+    const [inputValue, setInputValue] = useState<string>('');
     const filterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setValueInput(event.target.value);
+        setInputValue(event.target.value);
     };
 
     const searchNotes = () => {
-        setSearchValue(valueInput);
+        setSearchValue(inputValue);
     };
 
     return (
         <>
             <TextField
-                className={classes.searchNote}
+                className={classes.noteSearch}
                 onChange={filterChange}
                 placeholder="חיפוש"
                 multiline

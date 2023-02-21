@@ -1,13 +1,15 @@
-import useStyles from './AppStyles';
 import React, { useState, useEffect, useMemo } from 'react';
-import Note from './interfaces/Note';
-import NoteItem from './components/noteItem/noteItem';
-import AddNote from './components/addNote/addNote';
 
-import NotesSearch from './components/notesSearch/notesSearch';
+import Note from 'models/interfaces/Note';
+
+import useStyles from './appStyles';
+import AddNote from './addNote/addNote';
+import NoteItem from './noteItem/noteItem';
+import NotesSearch from './notesSearch/notesSearch';
+
+const KEY_NOTE = 'notes';
 
 const App: React.FC = () => {
-    const KEY_NOTE = 'notes';
     const classes = useStyles();
     const [notes, setNotes] = useState<Note[]>(
         JSON.parse(localStorage.getItem(KEY_NOTE) ?? '[]')
@@ -19,7 +21,12 @@ const App: React.FC = () => {
     }, [notes]);
 
     const filterNotes = useMemo(
-        () => notes.filter((prevNote) => prevNote.title.includes(searchValue)),
+        () =>
+            notes.filter(
+                (prevNote) =>
+                    prevNote.title.includes(searchValue) ||
+                    prevNote.content.includes(searchValue)
+            ),
         [searchValue, notes]
     );
 

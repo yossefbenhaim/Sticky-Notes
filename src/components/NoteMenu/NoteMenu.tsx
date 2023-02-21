@@ -4,12 +4,12 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import useStyles from './noteMenuStyle';
-import Note from '../../interfaces/Note';
+import Note from 'models/interfaces/Note';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import EditIcon from '@mui/icons-material/Edit';
 interface Props {
     note: Note;
-    setFlag: Dispatch<SetStateAction<boolean>>;
+    setIsEdit: Dispatch<SetStateAction<boolean>>;
     setNotes: (value: React.SetStateAction<Note[]>) => void;
 }
 
@@ -17,7 +17,7 @@ const NoteMenu: React.FC<Props> = (props) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
-    const { note, setFlag, setNotes } = props;
+    const { note, setIsEdit, setNotes } = props;
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
@@ -26,7 +26,7 @@ const NoteMenu: React.FC<Props> = (props) => {
         setAnchorEl(null);
     };
     const viewUpDate = () => {
-        setFlag(true);
+        setIsEdit(true);
     };
 
     const myDeleteNote = () => {
@@ -37,11 +37,7 @@ const NoteMenu: React.FC<Props> = (props) => {
 
     return (
         <>
-            <IconButton
-                className={classes.Menu}
-                id="long-button"
-                onClick={handleClick}
-            >
+            <IconButton className={classes.Menu} onClick={handleClick}>
                 <MoreVertIcon />
             </IconButton>
             <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>

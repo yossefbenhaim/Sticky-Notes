@@ -5,12 +5,15 @@ const useStyles = makeStyles({
         width: '100%',
     },
     header: {
-        backgroundColor: '#d5e04087',
+        backgroundColor: '#d5e040',
         width: '100%',
         height: '100px',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
+        position: 'sticky',
+        zIndex: '100',
+        top: '0',
     },
     searchNotesContainer: {
         width: '89%',
@@ -18,13 +21,13 @@ const useStyles = makeStyles({
         alignSelf: 'center',
     },
     addNoteContainetr: {
-        width: '91px',
+        width: '8%',
         height: '46px',
         alignSelf: 'center',
     },
 
     body: {
-        width: '93%',
+        width: '90%',
         height: '100%',
         display: 'flex',
         direction: 'rtl',

@@ -20,6 +20,7 @@ const useStyles = makeStyles<Theme, Props>({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'end',
+        alignItems: 'center',
         height: '43px',
     },
     doneIcon: {
