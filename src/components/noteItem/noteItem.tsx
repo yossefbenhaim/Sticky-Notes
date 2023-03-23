@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { Card, TextField, IconButton } from '@mui/material';
+
 import useStyles from './noteItemStyles';
 import Note from 'models/interfaces/Note';
-import { Card, TextField, IconButton } from '@mui/material';
 import NoteMenu from '../noteMenu/noteMenu';
 import DoneIcon from '@mui/icons-material/Done';
 import ColorPalette from '../colorPalette/colorPalette';
@@ -14,7 +15,6 @@ interface Props {
 
 const NoteItem: React.FC<Props> = (props) => {
     const { note, setNotes } = props;
-
     const [title, setTitle] = useState<string>('');
     const [content, setContent] = useState<string>('');
     const [isEdit, setIsEdit] = useState<boolean>(false);
@@ -54,7 +54,6 @@ const NoteItem: React.FC<Props> = (props) => {
             )
         );
     };
-
     return (
         <Card className={classes.card}>
             <div className={classes.header}>
@@ -69,21 +68,18 @@ const NoteItem: React.FC<Props> = (props) => {
                         </IconButton>
                     </div>
                 )}
-
                 {isEdit && (
                     <ColorPalette
                         icon={<PaletteIcon />}
                         onClick={changeNoteColor}
                     />
                 )}
-
                 <NoteMenu
                     note={note}
                     setIsEdit={setIsEdit}
                     setNotes={setNotes}
                 />
             </div>
-
             <TextField
                 className={classes.titleCard}
                 onChange={changeTitle}
@@ -94,7 +90,6 @@ const NoteItem: React.FC<Props> = (props) => {
                 rows={1}
                 defaultValue={note.title}
             />
-
             <TextField
                 className={classes.contentCard}
                 onChange={changeContent}

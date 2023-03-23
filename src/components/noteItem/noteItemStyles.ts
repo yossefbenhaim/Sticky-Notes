@@ -12,8 +12,10 @@ const useStyles = makeStyles<Theme, Props>({
         margin: '1%',
         display: 'flex',
         flexDirection: 'column',
-
+        // border: '2px solid black',
+        borderRadius: '30px',
         backgroundColor: ({ color }) => color,
+        boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)',
     },
     header: {
         marginTop: '2%',
@@ -32,6 +34,8 @@ const useStyles = makeStyles<Theme, Props>({
     },
     titleCard: {
         '& .MuiInputBase-root': {
+            fontSize: '25px',
+            fontWeight: 'bold',
             backgroundColor: '#ffff5f00',
             direction: 'rtl',
         },
